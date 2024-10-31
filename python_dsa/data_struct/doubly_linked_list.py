@@ -36,7 +36,13 @@ class DoublyLinkedList(Generic[T]):
             self._tail = current
             self._length = size
         else:
-            pass
+            assert type(data) is list, "must be a list if not node or None"
+            new_node = DoublyLinkedListNode(data[0])
+            self._head = new_node
+            self._tail = new_node
+            self._length = 1
+            for i in range(1, len(data)):
+                self.append(data[i])
 
     def is_empty(self) -> bool:
         return self._length == 0
