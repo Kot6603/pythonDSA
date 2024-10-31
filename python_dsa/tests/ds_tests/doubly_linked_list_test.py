@@ -100,28 +100,41 @@ class TestIntDoublyLinkedList:
         assert int3_dll.size() == 3
         assert str(int3_dll) == "DoublyLinkedList[3]: 1 <-> 2 <-> 3"
 
-    @mark.skip("Not implemented")
-    def test_get_element_empty(self, empty_int_linked_list):
+    def test_get_element_empty(self, empty_int_dll):
         with raises(IndexError) as idxError:
-            _ = empty_int_linked_list.get_node(4)
+            _ = empty_int_dll.get_node(4)
         assert str(idxError.value) == "index out of range"
 
-    @mark.skip("Not implemented")
-    def test_get_element_no_args(self, int3_linked_list):
-        node = int3_linked_list.get_node()
+    def test_get_element_no_args(self, int3_dll):
+        node = int3_dll.get_node()
         assert node.data == 1
-        assert int3_linked_list.size() == 3
-        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
+        assert int3_dll.size() == 3
+        assert str(int3_dll) == "DoublyLinkedList[3]: 1 <-> 2 <-> 3"
 
-    @mark.skip("Not implemented")
-    def test_get_element_non_empty(self, int3_linked_list):
-        node = int3_linked_list.get_node(2)
-        assert node.data == 3
-        assert int3_linked_list.size() == 3
-        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
+    def test_get_element_non_empty_pos(self, int5_dll):
+        node = int5_dll.get_node(1)
+        assert node.data == 2
+        assert int5_dll.size() == 5
+        assert str(int5_dll) == "DoublyLinkedList[5]: 1 <-> 2 <-> 3 <-> 4 <-> 5"
 
-    @mark.skip("Not implemented")
-    def test_get_element_out_of_range(self, int3_linked_list):
+    def test_get_element_non_empty_neg1(self, int5_dll):
+        node = int5_dll.get_node(-1)
+        assert node.data == 5
+        assert int5_dll.size() == 5
+        assert str(int5_dll) == "DoublyLinkedList[5]: 1 <-> 2 <-> 3 <-> 4 <-> 5"
+
+    def test_get_element_non_empty_neg2(self, int5_dll):
+        node = int5_dll.get_node(-5)
+        assert node.data == 1
+        assert int5_dll.size() == 5
+        assert str(int5_dll) == "DoublyLinkedList[5]: 1 <-> 2 <-> 3 <-> 4 <-> 5"
+
+    def test_get_element_out_of_range_pos(self, int3_dll):
         with raises(IndexError) as idxError:
-            _ = int3_linked_list.get_node(4)
+            _ = int3_dll.get_node(4)
+        assert str(idxError.value) == "index out of range"
+
+    def test_get_element_out_of_range_neg(self, int3_dll):
+        with raises(IndexError) as idxError:
+            _ = int3_dll.get_node(-4)
         assert str(idxError.value) == "index out of range"
