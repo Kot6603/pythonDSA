@@ -54,6 +54,12 @@ class LinkedList(Generic[T]):
         current.next = new_node
         self._length += 1
 
+    def insert(self, index: int, item: T) -> None:
+        raise NotImplementedError("Not implemented")
+
+    def index(self, item: T) -> int:
+        raise NotImplementedError("Not implemented")
+
     def remove(self, item: T | None = None) -> bool:
         """Removes the item from the list.
 
