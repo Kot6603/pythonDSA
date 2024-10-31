@@ -25,9 +25,17 @@
 
 - [ ] Breadth First Search
 - [ ] Depth First Search
+- [ ] Uniform Cost Search
+- [ ] A* Search
+- [ ] Greedy Best First Search
+- [ ] Iterative Deepening Depth First Search
+- [ ] Bidirectional Search
+
 - [ ] Dijkstra's Algorithm
 - [ ] Bellman-Ford Algorithm
 - [ ] Floyd-Warshall Algorithm
 - [ ] Prim's Algorithm
 - [ ] Kruskal's Algorithm
 - [ ] Tarjan's Algorithm
+
+- [ ] Genetic Algorithm
