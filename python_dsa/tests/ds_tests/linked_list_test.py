@@ -63,11 +63,24 @@ class TestIntLinkedList:
         assert int3_linked_list.size() == 3
         assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
 
-    def test_get_element_empty(self):
-        pass
+    def test_get_element_empty(self, empty_int_linked_list):
+        with raises(IndexError) as idxError:
+            _ = empty_int_linked_list.get_node(4)
+        assert str(idxError.value) == "index out of range"
 
-    def test_get_element_non_empty(self):
-        pass
+    def test_get_element_no_args(self, int3_linked_list):
+        node = int3_linked_list.get_node()
+        assert node.data == 1
+        assert int3_linked_list.size() == 3
+        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
 
-    def test_get_element_out_of_range(self):
-        pass
+    def test_get_element_non_empty(self, int3_linked_list):
+        node = int3_linked_list.get_node(2)
+        assert node.data == 3
+        assert int3_linked_list.size() == 3
+        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
+
+    def test_get_element_out_of_range(self, int3_linked_list):
+        with raises(IndexError) as idxError:
+            _ = int3_linked_list.get_node(4)
+        assert str(idxError.value) == "index out of range"

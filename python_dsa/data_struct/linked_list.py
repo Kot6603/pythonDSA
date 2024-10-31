@@ -75,6 +75,20 @@ class LinkedList(Generic[T]):
 
         return False
 
+    def get_node(self, index: int = 0) -> LinkedListNode[T] | None:
+        if index < 0 or index >= self._length:
+            raise IndexError("index out of range")
+
+        curr_idx = 0
+        current = self.head
+        while current is not None:
+            if curr_idx == index:
+                return current
+            current = current.next
+            curr_idx += 1
+
+        return None
+
     def __str__(self) -> str:
         if self.is_empty():
             return "Linked List[0]: (empty)"
