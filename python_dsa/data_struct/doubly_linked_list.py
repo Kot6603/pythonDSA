@@ -44,6 +44,16 @@ class DoublyLinkedList(Generic[T]):
     def size(self) -> int:
         return self._length
 
+    def append(self, item: T) -> None:
+        new_node = DoublyLinkedListNode(item, None, self._tail)
+        if self.is_empty():
+            self._head = new_node
+        else:
+            assert self._tail is not None, "tail None when list not empty"
+            self._tail.next = new_node
+        self._tail = new_node
+        self._length += 1
+
     def __str__(self) -> str:
         if self.is_empty():
             return "DoublyLinkedList[0]: (empty)"
