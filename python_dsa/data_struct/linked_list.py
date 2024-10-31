@@ -45,6 +45,36 @@ class LinkedList(Generic[T]):
         current.next = new_node
         self._length += 1
 
+    def remove(self, item: T | None = None) -> bool:
+        """Removes the item from the list.
+
+        no arguments  -> Remove first item
+        returns true or false based on found or not
+        """
+        if self.head is None:
+            return False
+
+        if item is None:
+            self.head = self.head.next
+            self._length -= 1
+            return True
+
+        current = self.head
+        prev = self.head
+        while current is not None:
+            if current.data == item:
+                if current == self.head:
+                    self.head = current.next
+                else:
+                    prev.next = current.next
+                self._length -= 1
+                return True
+
+            prev = current
+            current = current.next
+
+        return False
+
     def __str__(self) -> str:
         if self.is_empty():
             return "Linked List[0]: (empty)"
@@ -58,7 +88,6 @@ class LinkedList(Generic[T]):
         return f'Linked List[{self._length}]: {" -> ".join(array)}'
 
 
-# pop
-# remove
+# remove # element
 # insert
 # size
