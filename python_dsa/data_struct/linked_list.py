@@ -109,7 +109,3 @@ class LinkedList(Generic[T]):
             current = current.next
 
         return f'Linked List[{self._length}]: {" -> ".join(array)}'
-
-
-# insert
-# size
