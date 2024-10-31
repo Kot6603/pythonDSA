@@ -89,8 +89,6 @@ class DoublyLinkedList(Generic[T]):
 
         if index < 0:
             curr_idx = self._length - 1
-            # idx = ridx - length
-            # ridx = idx + length
             current = self._tail
             while current is not None:
                 if curr_idx - self._length == index:
