@@ -1,4 +1,4 @@
-from pytest import fixture, mark
+from pytest import fixture, mark, raises
 
 from python_dsa.data_struct.doubly_linked_list import (
     DoublyLinkedList,
@@ -14,6 +14,11 @@ def empty_int_dll() -> DoublyLinkedList[int]:
 @fixture
 def int3_dll() -> DoublyLinkedList[int]:
     return DoublyLinkedList[int]([1, 2, 3])
+
+
+@fixture
+def int5_dll() -> DoublyLinkedList[int]:
+    return DoublyLinkedList[int]([1, 2, 3, 4, 5])
 
 
 class TestIntDoublyLinkedList:
@@ -52,3 +57,71 @@ class TestIntDoublyLinkedList:
         int3_dll.append(4)
         assert int3_dll.size() == 4
         assert str(int3_dll) == "DoublyLinkedList[4]: 1 <-> 2 <-> 3 <-> 4"
+
+    def test_remove_empty(self, empty_int_dll):
+        result = empty_int_dll.remove(0)
+        assert not result
+        assert empty_int_dll.size() == 0
+        assert str(empty_int_dll) == "DoublyLinkedList[0]: (empty)"
+
+    def test_remove_found0(self, int5_dll):
+        result = int5_dll.remove(1)
+        assert result
+        assert int5_dll.size() == 4
+        assert str(int5_dll) == "DoublyLinkedList[4]: 2 <-> 3 <-> 4 <-> 5"
+
+    def test_remove_found1(self, int5_dll):
+        result = int5_dll.remove(2)
+        assert result
+        assert int5_dll.size() == 4
+        assert str(int5_dll) == "DoublyLinkedList[4]: 1 <-> 3 <-> 4 <-> 5"
+
+    def test_remove_found2(self, int5_dll):
+        result = int5_dll.remove(3)
+        assert result
+        assert int5_dll.size() == 4
+        assert str(int5_dll) == "DoublyLinkedList[4]: 1 <-> 2 <-> 4 <-> 5"
+
+    def test_remove_found3(self, int5_dll):
+        result = int5_dll.remove(4)
+        assert result
+        assert int5_dll.size() == 4
+        assert str(int5_dll) == "DoublyLinkedList[4]: 1 <-> 2 <-> 3 <-> 5"
+
+    def test_remove_found4(self, int5_dll):
+        result = int5_dll.remove(5)
+        assert result
+        assert int5_dll.size() == 4
+        assert str(int5_dll) == "DoublyLinkedList[4]: 1 <-> 2 <-> 3 <-> 4"
+
+    def test_remove_not_found(self, int3_dll):
+        result = int3_dll.remove(4)
+        assert not result
+        assert int3_dll.size() == 3
+        assert str(int3_dll) == "DoublyLinkedList[3]: 1 <-> 2 <-> 3"
+
+    @mark.skip("Not implemented")
+    def test_get_element_empty(self, empty_int_linked_list):
+        with raises(IndexError) as idxError:
+            _ = empty_int_linked_list.get_node(4)
+        assert str(idxError.value) == "index out of range"
+
+    @mark.skip("Not implemented")
+    def test_get_element_no_args(self, int3_linked_list):
+        node = int3_linked_list.get_node()
+        assert node.data == 1
+        assert int3_linked_list.size() == 3
+        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
+
+    @mark.skip("Not implemented")
+    def test_get_element_non_empty(self, int3_linked_list):
+        node = int3_linked_list.get_node(2)
+        assert node.data == 3
+        assert int3_linked_list.size() == 3
+        assert str(int3_linked_list) == "Linked List[3]: 1 -> 2 -> 3"
+
+    @mark.skip("Not implemented")
+    def test_get_element_out_of_range(self, int3_linked_list):
+        with raises(IndexError) as idxError:
+            _ = int3_linked_list.get_node(4)
+        assert str(idxError.value) == "index out of range"

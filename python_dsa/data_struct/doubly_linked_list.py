@@ -60,6 +60,29 @@ class DoublyLinkedList(Generic[T]):
         self._tail = new_node
         self._length += 1
 
+    def insert(self, index: int, item: T) -> None:
+        raise NotImplementedError("Not implemented yet")
+
+    def remove(self, item: T) -> bool:
+        current = self._head
+        while current is not None:
+            if current.data == item:
+                if current == self._head:
+                    self._head = current.next
+                    if current.next is not None:
+                        current.next.prev = None
+                else:
+                    assert current.prev is not None, "corrupt node"
+                    current.prev.next = current.next
+                self._length -= 1
+                return True
+            current = current.next
+
+        return False
+
+    def get_node(self, index: int = 0) -> bool:
+        raise NotImplementedError("Not implemented yet")
+
     def __str__(self) -> str:
         if self.is_empty():
             return "DoublyLinkedList[0]: (empty)"
