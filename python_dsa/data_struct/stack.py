@@ -35,4 +35,4 @@ class Stack(Generic[T]):
         return self.items
 
     def __str__(self) -> str:
-        return str(self.items)[:-1] + " <-"
+        return f"Stack[{self.size()}]: {str(self.items)[:-1]} <-"
