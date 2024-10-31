@@ -34,5 +34,5 @@ class Stack(Generic[T]):
     def to_list(self) -> list[T]:
         return self.items
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.items)[:-1] + " <-"
