@@ -1,6 +1,6 @@
-from pytest import fixture
+from pytest import fixture, raises
 
-from python_dsa.data_struct.linked_list import LinkedList
+from python_dsa.data_struct.linked_list import LinkedList, LinkedListNode
 
 
 @fixture
@@ -23,6 +23,18 @@ class TestIntLinkedList:
 
     def test_list_init(self):
         ll = LinkedList[int]([1, 2, 3])
+        assert not ll.is_empty()
+        assert ll.size() == 3
+        assert ll.head is not None
+        assert ll.head.data == 1
+        assert str(ll) == "Linked List[3]: 1 -> 2 -> 3"
+
+    def test_node_init(self):
+        node3 = LinkedListNode[int](3)
+        node2 = LinkedListNode[int](2, node3)
+        node1 = LinkedListNode[int](1, node2)
+        ll = LinkedList[int](node1)
+
         assert not ll.is_empty()
         assert ll.size() == 3
         assert ll.head is not None

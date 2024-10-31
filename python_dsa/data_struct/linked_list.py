@@ -12,17 +12,26 @@ class LinkedListNode(Generic[T]):
 
 
 class LinkedList(Generic[T]):
-    def __init__(self, array: list[T] | None = None):
+    def __init__(self, head: list[T] | LinkedListNode[T] | None = None):
         self.head: LinkedListNode[T] | None
         self._length: int
-        if array is None:
+        if head is None:
             self.head = None
             self._length = 0
+        elif type(head) is LinkedListNode:
+            self.head = head
+            current = head
+            size: int = 0
+            while current is not None:
+                size += 1
+                current = current.next
+            self._length = size
         else:
-            self.head = LinkedListNode(array[0])
+            assert type(head) is list
+            self.head = LinkedListNode(head[0])
             self._length = 1
-            for i in range(1, len(array)):
-                self.append(array[i])
+            for i in range(1, len(head)):
+                self.append(head[i])
 
     def is_empty(self) -> bool:
         return self._length == 0
@@ -102,6 +111,5 @@ class LinkedList(Generic[T]):
         return f'Linked List[{self._length}]: {" -> ".join(array)}'
 
 
-# remove # element
 # insert
 # size
