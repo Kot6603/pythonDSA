@@ -41,3 +41,21 @@ class TestBubbleSort:
         result = bubble_sort(unsorted_list)
         assert unsorted_list == [2, 5, 1, 3, 4]
         assert result == [1, 2, 3, 4, 5]
+
+
+class TestInsertionSort:
+    def test_empty(self, empty_list):
+        result = insertion_sort(empty_list)
+        assert result == []
+
+    def test_one(self, one_item):
+        result = insertion_sort(one_item)
+        assert result == [1]
+
+    def test_sorted(self, sorted_list):
+        result = insertion_sort(sorted_list)
+        assert result == [1, 2, 3, 4, 5]
+
+    def test_unsorted(self, unsorted_list):
+        result = insertion_sort(unsorted_list)
+        assert result == [1, 2, 3, 4, 5]

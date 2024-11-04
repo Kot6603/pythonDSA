@@ -21,3 +21,23 @@ def bubble_sort(original: list[int]) -> list[int]:
                 array[i - 1], array[i] = array[i], array[i - 1]
 
     return array
+
+
+def insertion_sort(original: list[int]) -> list[int]:
+    """Insertion Sort
+
+    Basic idea:
+    - iterate over
+    - sorted | unsorted
+    - if before is bigger, swap
+    """
+    array = original.copy()
+    n = len(array)
+
+    for i in range(1, n):
+        j = i
+        while array[j - 1] > array[j] and j > 0:
+            array[j - 1], array[j] = array[j], array[j - 1]
+            j -= 1
+
+    return array
