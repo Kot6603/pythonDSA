@@ -1,6 +1,6 @@
 from pytest import fixture, mark
 
-from python_dsa.algorithms.sorting import bubble_sort, insertion_sort
+from python_dsa.algorithms.sorting import bubble_sort, insertion_sort, selection_sort
 
 
 @fixture
@@ -58,4 +58,22 @@ class TestInsertionSort:
 
     def test_unsorted(self, unsorted_list):
         result = insertion_sort(unsorted_list)
+        assert result == [1, 2, 3, 4, 5]
+
+
+class TestSelectionSort:
+    def test_empty(self, empty_list):
+        result = selection_sort(empty_list)
+        assert result == []
+
+    def test_one(self, one_item):
+        result = selection_sort(one_item)
+        assert result == [1]
+
+    def test_sorted(self, sorted_list):
+        result = selection_sort(sorted_list)
+        assert result == [1, 2, 3, 4, 5]
+
+    def test_unsorted(self, unsorted_list):
+        result = selection_sort(unsorted_list)
         assert result == [1, 2, 3, 4, 5]

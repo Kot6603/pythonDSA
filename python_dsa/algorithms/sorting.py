@@ -41,3 +41,27 @@ def insertion_sort(original: list[int]) -> list[int]:
             j -= 1
 
     return array
+
+
+def selection_sort(original: list[int]) -> list[int]:
+    """Selection Sort
+
+    Basic idea:
+    - choose the maximum element if umsorted list
+    - swap it with the last element of the unsorted list
+
+    - unsorted | sorted
+    """
+    array = original.copy()
+    n = len(array)
+
+    for i in range(n - 1, -1, -1):
+        largest = array[0]
+        index = 0
+        for j in range(1, i + 1):
+            if array[j] > largest:
+                largest = array[j]
+                index = j
+        array[index], array[i] = array[i], array[index]
+
+    return array
